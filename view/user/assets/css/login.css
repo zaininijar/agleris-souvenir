@@ -1,0 +1,84 @@
+.login-container {
+  margin-top: -200px;
+  background-color: white;
+  position: relative;
+  z-index: 20;
+  border-radius: 12px;
+  padding: 70px 40px;
+  box-shadow: 10px 8px 33px -7px rgba(110, 108, 108, 0.75);
+  -webkit-box-shadow: 10px 8px 33px -7px rgba(99, 91, 91, 0.75);
+  -moz-box-shadow: 10px 8px 33px -7px rgba(102, 98, 98, 0.75);
+}
+
+.login-container form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  margin-top: 30px;
+}
+
+.login-container form div {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.login-container form input,
+.login-container form textarea {
+  padding: 15px 10px;
+  outline: none;
+  border: 1px solid #acacac;
+  border-radius: 4px;
+  width: 100%;
+  font-size: 16px;
+}
+
+.login-container form label {
+  width: 20%;
+}
+
+.hero {
+  height: 450px;
+}
+
+.header-effect {
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 100%;
+  background: rgb(160, 32, 176);
+  background: linear-gradient(
+    180deg,
+    rgba(27, 12, 29, 0.616) 0%,
+    rgba(251, 216, 254, 0.027) 40%,
+    rgba(216, 238, 254, 0) 100%
+  );
+}
+
+.btn-login {
+  outline: none;
+  border: none;
+  border-radius: 4px;
+  padding: 15px 10px;
+  width: 100%;
+  background-color: var(--color-primary-500);
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.btn-register {
+  outline: none;
+  border: none;
+  border-radius: 4px;
+  padding: 15px 10px;
+  text-decoration: none;
+  width: 100%;
+  text-align: center;
+}
+.btn-register:hover {
+  text-decoration: underline;
+}
