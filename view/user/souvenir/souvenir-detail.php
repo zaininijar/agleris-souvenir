@@ -15,6 +15,7 @@ if (isset($_POST['add_to_chart'])) {
     $transations_result = transations(3, $id);
 
     if ($transations_result !== false) {
+        $new_chart_count = $chart_count + $_POST['unit'];
         $_SESSION['is_transaction_add_to_chart'] = true;
     } else {
         $_SESSION['is_transaction_add_to_chart'] = false;
@@ -26,10 +27,14 @@ if (isset($_POST['buy_now'])) {
     $transations_result_buy_now = transations(2, $id);
 
     if ($transations_result_buy_now !== false) {
+        $unit_now = $_POST['unit_old'] - $_POST['unit'];
+        $sql_c = "UPDATE souvenirs SET unit = $unit_now WHERE id = $id";
+        $result_c = $conn->query($sql_c);
         $_SESSION['is_transaction_buy_now'] = true;
     } else {
         $_SESSION['is_transaction_buy_now'] = false;
     }
+
 }
 
 function transations($status, $id)
@@ -74,9 +79,12 @@ function transations($status, $id)
             <form action="<?= $base_url . 'souvenir/detail/' . $id ?>" method="post">
                 <div class="unit-container">
                     <div class="input-unit">
-                        <input class="input-unit" id="input-unit" type="number" name="unit" value="1" min="1"
-                            max="<?= $data['unit'] ?>">
-                        <strong>Unit total <?= $data['unit'] ?></strong>
+                        <input oninvalid="this.setCustomValidity('Stok kosong ya kk...')" class="input-unit"
+                            id="input-unit" type="number" name="unit" value="1" min="1"
+                            max="<?php print(isset($unit_now)) ? $unit_now : $data['unit']; ?>">
+                        <strong>Unit total <?php print(isset($unit_now)) ? $unit_now : $data['unit']; ?></strong>
+                        <input type="hidden" value="<?php print(isset($unit_now)) ? $unit_now : $data['unit']; ?>"
+                            name="unit_old">
                     </div>
                     <div class="amout-unit">
                         <div class="button">

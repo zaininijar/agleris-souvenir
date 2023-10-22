@@ -45,7 +45,7 @@ $result = $conn->query($sql);
                                 <tr>
                                     <th>No</th>
                                     <th>Nama</th>
-                                    <th>Deskripsi</th>
+                                    <th style="max-width: 20%;">Deskripsi</th>
                                     <th>Unit</th>
                                     <th>Harga</th>
                                     <th>Picture</th>
@@ -55,22 +55,28 @@ $result = $conn->query($sql);
                             </thead>
                             <tbody>
                                 <?php if ($result->num_rows > 0) : ?>
-                                    <?php $no = 1; ?>
-                                    <?php while ($row = $result->fetch_assoc()) : ?>
-                                        <tr>
-                                            <td><?= $no; ?></td>
-                                            <td><?= $row['name'] ?></td>
-                                            <td><?= $row['description'] ?></td>
-                                            <td><?= $row['unit'] ?></td>
-                                            <td>Rp<?= $row['price'] ?></td>
-                                            <td><img src="<?= $base_url . 'images/souvenir/' . $row['picture_path'] ?>" alt="">
-                                            </td>
-                                            <td><?= $row['created_at'] ?></td>
-                                            <td><?= $row['updated_at'] ?></td>
-                                        </tr>
-                                        <?php $no++; ?>
+                                <?php $no = 1; ?>
+                                <?php while ($row = $result->fetch_assoc()) : ?>
+                                <tr>
+                                    <td><?= $no; ?></td>
+                                    <td><?= $row['name'] ?></td>
+                                    <td>
+                                        <summary>
+                                            <details style="white-space: pre-wrap;">
+                                                <?= $row['description'] ?>
+                                            </details>
+                                        </summary>
+                                    </td>
+                                    <td><?= $row['unit'] ?></td>
+                                    <td>Rp<?= $row['price'] ?></td>
+                                    <td><img src="<?= $base_url . 'images/souvenir/' . $row['picture_path'] ?>" alt="">
+                                    </td>
+                                    <td><?= $row['created_at'] ?></td>
+                                    <td><?= $row['updated_at'] ?></td>
+                                </tr>
+                                <?php $no++; ?>
 
-                                    <?php endwhile; ?>
+                                <?php endwhile; ?>
                                 <?php endif; ?>
                             </tbody>
                         </table>
