@@ -1,7 +1,6 @@
-<?php require_once 'layouts/header.php' ?>
 <?php
 
-$sql = "SELECT * FROM souvenirs LIMIT 8";
+$sql = "SELECT * FROM souvenirs";
 $result = $conn->query($sql);
 
 ?>
@@ -22,7 +21,7 @@ $result = $conn->query($sql);
                     </div>
                 </div>
                 <div class="card-price">Rp<?= $row['price'] ?></div>
-                <a class="card-button" href="souvenir/detail/<?= $row['id'] ?>">Get Now</a>
+                <a class="card-button" href="<?= $base_url ?>souvenir/detail/<?= $row['id'] ?>">Get Now</a>
             </div>
         </div>
         <?php endwhile; ?>
@@ -33,4 +32,3 @@ $result = $conn->query($sql);
     </div>
 </section>
 <?php $conn->close(); ?>
-<?php require_once 'layouts/footer.php' ?>

@@ -242,6 +242,7 @@ ul li {
 
 .hero-text {
   position: absolute;
+  z-index: 20;
   top: 0;
   right: 0;
   left: 0;
@@ -250,7 +251,7 @@ ul li {
   text-align: center;
   justify-content: center;
   align-items: center;
-  backdrop-filter: blur(5px);
+  backdrop-filter: blur(2px);
   padding: 30px;
   display: flex;
   flex-direction: column;
@@ -359,7 +360,12 @@ main section {
 
 .card .card-button:hover {
   font-weight: bold;
-  background-color: var(--color-success-500);
+  background: rgb(113, 47, 218);
+  background: linear-gradient(
+    173deg,
+    rgba(113, 47, 218, 1) 0%,
+    rgba(238, 124, 241, 1) 100%
+  );
   text-decoration: none;
   padding: 10px;
   border-radius: 8px;
@@ -377,8 +383,14 @@ main section {
   gap: 30px;
 }
 
+.payment-method .image {
+  background-color: white;
+  border-radius: 8px;
+  padding: 10px;
+}
+
 .payment-method img {
-  height: 50px;
+  height: 30px;
 }
 
 /* global */
@@ -392,7 +404,12 @@ main section {
 
 /* Footer */
 footer {
-  background-color: var(--color-primary-200);
+  background: rgb(113, 47, 218);
+  background: linear-gradient(
+    331deg,
+    rgba(113, 47, 218, 1) 13%,
+    rgba(238, 124, 241, 1) 100%
+  );
   text-align: center;
   color: white;
   padding: 20px 0;
@@ -445,13 +462,23 @@ footer {
 }
 
 .btn.btn-primary {
-  background-color: var(--color-success-500);
+  background: rgb(113, 47, 218);
+  background: linear-gradient(
+    173deg,
+    rgba(113, 47, 218, 1) 0%,
+    rgba(238, 124, 241, 1) 100%
+  );
   color: white;
 }
 
 .btn-primary {
   font-weight: bold;
-  background-color: var(--color-success-500);
+  background: rgb(113, 47, 218);
+  background: linear-gradient(
+    173deg,
+    rgba(113, 47, 218, 1) 0%,
+    rgba(238, 124, 241, 1) 100%
+  );
   text-decoration: none;
   padding: 10px 40px;
   border-radius: 8px;
@@ -463,11 +490,49 @@ footer {
 
 .btn-primary:hover {
   font-weight: bold;
-  background-color: var(--color-success-700);
+  background: rgb(113, 47, 218);
+  background: linear-gradient(
+    173deg,
+    rgba(238, 124, 241, 1) 0%,
+    rgba(113, 47, 218, 1) 100%
+  );
   text-decoration: none;
   padding: 10px 40px;
   border-radius: 8px;
   text-align: center;
   width: 100%;
   color: white;
+}
+
+.buble-chart {
+  position: fixed;
+  right: 40px;
+  bottom: 40px;
+  padding: 15px;
+  width: 50px;
+  height: 50px;
+  color: white;
+  border-radius: 50%;
+  cursor: pointer;
+  z-index: 999;
+  background: rgb(113, 47, 218);
+  background: linear-gradient(
+    173deg,
+    rgba(113, 47, 218, 1) 0%,
+    rgba(238, 124, 241, 1) 100%
+  );
+}
+
+.buble-chart .count {
+  width: 15px;
+  height: 15px;
+  font-size: 8px;
+  border-radius: 50%;
+  background-color: red;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: -4px;
+  right: -4px;
 }

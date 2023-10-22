@@ -4,14 +4,14 @@
 
 function register($data)
 {
-  global $conn;
+    global $conn;
 
-  $name = $data['name'];
-  $email = $data['email'];
-  $password = $data['password'];
-  $address = $data['address'];
+    $name = $data['name'];
+    $email = $data['email'];
+    $password = $data['password'];
+    $address = $data['address'];
 
-  $sql = "INSERT INTO users (name, email, password, address) 
+    $sql = "INSERT INTO users (name, email, password, address) 
     VALUES(
             '" . $name . "', 
             '" . $email . "', 
@@ -19,20 +19,20 @@ function register($data)
             '" . $address . "'
         )";
 
-  if ($conn->query($sql)) {
-    return "Berhasil Mendaftar";
-  } else {
-    var_dump(mysqli_error($conn));
-  };
+    if ($conn->query($sql)) {
+        return "Berhasil Mendaftar";
+    } else {
+        var_dump(mysqli_error($conn));
+    };
 }
 
 if (isset($_POST['register'])) {
-  $messageSuccess = register([
-    'name' => filter_input(INPUT_POST, 'name', FILTER_SANITIZE_STRING),
-    'email' => filter_input(INPUT_POST, 'email', FILTER_VALIDATE_EMAIL),
-    'password' => password_hash($_POST["password"], PASSWORD_DEFAULT),
-    'address' => filter_input(INPUT_POST, 'address', FILTER_SANITIZE_STRING)
-  ]);
+    $messageSuccess = register([
+      'name' => filter_input(INPUT_POST, 'name', FILTER_UNSAFE_RAW),
+      'email' => filter_input(INPUT_POST, 'email', FILTER_VALIDATE_EMAIL),
+      'password' => password_hash($_POST["password"], PASSWORD_DEFAULT),
+      'address' => filter_input(INPUT_POST, 'address', FILTER_UNSAFE_RAW)
+    ]);
 }
 
 ?>
