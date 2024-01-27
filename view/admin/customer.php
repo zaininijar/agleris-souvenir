@@ -27,10 +27,6 @@ $result = $conn->query($sql);
                     <button type="button" class="btn btn-light bg-white btn-icon me-3 mt-2 mt-xl-0">
                         <i class="mdi mdi-clock-outline text-muted"></i>
                     </button>
-                    <button type="button" class="btn btn-light bg-white btn-icon me-3 mt-2 mt-xl-0">
-                        <i class="mdi mdi-plus text-muted"></i>
-                    </button>
-                    <button class="btn btn-primary mt-2 mt-xl-0">Generate report</button>
                 </div>
             </div>
         </div>
