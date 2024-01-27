@@ -20,8 +20,10 @@ $result = $conn->query($sql);
                         <?= substr($row["description"], 0, 80) . '...' ?>
                     </div>
                 </div>
-                <div class="card-price">Rp<?= $row['price'] ?></div>
-                <a class="card-button" href="<?= $base_url ?>souvenir/detail/<?= $row['id'] ?>">Get Now</a>
+                <div style="display: flex; flex-direction: column; gap: 10px;">
+                    <div class="card-price">Rp<?= $row['price'] ?></div>
+                    <a class="card-button" href="<?= $base_url ?>souvenir/detail/<?= $row['id'] ?>">Get Now</a>
+                </div>
             </div>
         </div>
         <?php endwhile; ?>
@@ -31,4 +33,3 @@ $result = $conn->query($sql);
         <a class="btn btn-primary" href="souvenir.html">Show More</a>
     </div>
 </section>
-<?php $conn->close(); ?>

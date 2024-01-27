@@ -4,10 +4,6 @@ require_once 'utils/format.php';
 $sql = "SELECT * FROM souvenirs WHERE id = $id";
 $result = $conn->query($sql);
 
-if (!isset($_SESSION['auth'])) {
-    echo "<meta http-equiv='Refresh' content='0; url=$base_url'>";
-}
-
 $transaction_id = mt_rand(00000000, 99999999);
 
 if (isset($_POST['add_to_chart'])) {
@@ -24,7 +20,7 @@ if (isset($_POST['add_to_chart'])) {
 
 if (isset($_POST['buy_now'])) {
 
-    $transations_result_buy_now = transations(2, $id);
+    $transations_result_buy_now = transations(5, $id);
 
     if ($transations_result_buy_now !== false) {
         $unit_now = $_POST['unit_old'] - $_POST['unit'];
@@ -162,4 +158,3 @@ function transations($status, $id)
     });
     </script>
 </section>
-<?php $conn->close(); ?>

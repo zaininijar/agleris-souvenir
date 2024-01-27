@@ -4,11 +4,28 @@ require_once 'utils/format.php';
 $sql = "SELECT transactions.*, souvenirs.name, souvenirs.description, souvenirs.picture_path FROM transactions JOIN souvenirs ON transactions.souvenir_id = souvenirs.id WHERE transactions.user_id = " . $_SESSION['auth']['id'] . " AND transactions.status = 3 ORDER BY transactions.created_at DESC";
 $result = $conn->query($sql);
 
-if (!isset($_SESSION['auth'])) {
-    echo "<meta http-equiv='Refresh' content='0; url=$base_url'>";
+?>
+
+<?php
+
+if (isset($_POST['checkout'])) {
+
+    $sql_checkout = "UPDATE transactions SET status = 5 WHERE id = " . $_POST['id'];
+    $result_checkout = $conn->query($sql_checkout);
+
+    if ($conn->affected_rows > 0) {
+        echo "<script>alert('Berhasil Checkout')</script>";
+        echo '<meta http-equiv="refresh" content="2">';
+        $_SESSION['is_transaction_buy_now'] = true;
+
+    } else {
+        echo "<script>alert('Gagal Checkout')</script>";
+    }
+
 }
 
 ?>
+
 
 <link rel="stylesheet" href="<?= $base_url ?>view/user/assets/css/souvenir-detail.css">
 
@@ -45,6 +62,24 @@ if (!isset($_SESSION['auth'])) {
 
 <?php if ($result->num_rows > 0) : ?>
 <div class="card-container">
+
+    <?php if(isset($_SESSION['is_transaction_buy_now'])): ?>
+
+    <?php if($_SESSION['is_transaction_buy_now']): ?>
+    <div class="alert alert-success buy">
+        <div>Behasil melakukan pemesanan, silahkan cek detail pembayaran</div> <a
+            href="<?= $base_url . 'souvenir/payment/' . $transaction_id ?>">Bayar
+            Sekarang</a>
+    </div>
+    <?php else: ?>
+    <div class="alert alert-success buy">
+        <div>GAGAL melakukan pemesanan, silahkan cek detail pembayaran</div> <a
+            href="<?= $base_url . 'souvenir/payment/' . $transaction_id ?>">Bayar
+            Sekarang</a>
+    </div>
+    <?php endif; ?>
+    <?php unset($_SESSION['is_transaction_buy_now']); ?>
+    <?php endif; ?>
     <?php while($data = $result->fetch_assoc()): ?>
     <div class="card-detail">
         <div class="image-card-wrapper">
@@ -80,7 +115,10 @@ if (!isset($_SESSION['auth'])) {
                 </div>
                 <div class="amout-unit">
                     <div class="button">
-                        <a href="wa.me" class="btn btn-primary">Chat Admin Sekarang</a>
+                        <form action="" method="post">
+                            <input type="hidden" name="id" value="<?= $data['id'] ?>" />
+                            <button name="checkout" type="submit" class="btn btn-primary">Checkout Sekarang</button>
+                        </form>
                     </div>
                     <h3 class="card-detail-title">
                         Total tagihan : <?= idr_format($data['price_total']) ?>
@@ -92,4 +130,3 @@ if (!isset($_SESSION['auth'])) {
     <?php endwhile; ?>
 </div>
 <?php endif; ?>
-<?php $conn->close(); ?>

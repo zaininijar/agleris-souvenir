@@ -1,12 +1,16 @@
 <?php
 require_once 'utils/format.php';
 
-$sql = "SELECT transactions.*, souvenirs.name, souvenirs.description, souvenirs.picture_path FROM transactions JOIN souvenirs ON transactions.souvenir_id = souvenirs.id WHERE transactions.user_id = " . $_SESSION['auth']['id'] . " AND transactions.status != 3 ORDER BY transactions.created_at DESC";
-$result = $conn->query($sql);
+$sql = "SELECT transactions.*, 
+        souvenirs.name, 
+        souvenirs.description, 
+        souvenirs.picture_path 
+        FROM transactions JOIN souvenirs 
+        ON transactions.souvenir_id = souvenirs.id 
+        WHERE transactions.user_id = " . $_SESSION['auth']['id'] .
+        " AND transactions.status != 3 ORDER BY transactions.created_at DESC";
 
-if (!isset($_SESSION['auth'])) {
-    echo "<meta http-equiv='Refresh' content='0; url=$base_url'>";
-}
+$result = $conn->query($sql);
 
 ?>
 
@@ -92,4 +96,3 @@ if (!isset($_SESSION['auth'])) {
     <?php endwhile; ?>
 </div>
 <?php endif; ?>
-<?php $conn->close(); ?>

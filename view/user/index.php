@@ -21,15 +21,17 @@ $result = $conn->query($sql);
                         <?= substr($row["description"], 0, 80) . '...' ?>
                     </div>
                 </div>
-                <div class="card-price">Rp<?= $row['price'] ?></div>
-                <a class="card-button" href="souvenir/detail/<?= $row['id'] ?>">Get Now</a>
+                <div style="display: flex; flex-direction: column; gap: 10px">
+                    <div class="card-price">Rp<?= $row['price'] ?></div>
+                    <a class="card-button" href="souvenir/detail/<?= $row['id'] ?>">Get Now</a>
+                </div>
             </div>
         </div>
         <?php endwhile; ?>
         <?php endif; ?>
     </div>
     <div class="button-container">
-        <a class="btn btn-primary" href="souvenir.html">Show More</a>
+        <a class="btn btn-primary" href="<?= $base_url ?>souvenir">Show More</a>
     </div>
 </section>
 <?php $conn->close(); ?>

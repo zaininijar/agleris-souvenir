@@ -4,10 +4,6 @@ require_once 'utils/format.php';
 $sql = "SELECT transactions.*, souvenirs.name, souvenirs.description, souvenirs.picture_path FROM transactions JOIN souvenirs ON transactions.souvenir_id = souvenirs.id WHERE transactions.id = $id";
 $result = $conn->query($sql);
 
-if (!isset($_SESSION['auth'])) {
-    echo "<meta http-equiv='Refresh' content='0; url=$base_url'>";
-}
-
 ?>
 
 <link rel="stylesheet" href="<?= $base_url ?>view/user/assets/css/souvenir-detail.css">
@@ -101,4 +97,3 @@ if (!isset($_SESSION['auth'])) {
     </div>
 </div>
 <?php endif; ?>
-<?php $conn->close(); ?>

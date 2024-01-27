@@ -12,7 +12,11 @@ if ($_SERVER["REQUEST_URI"]) {
 session_start();
 
 if (isset($_SESSION['auth'])) {
-    $sql = "SELECT COUNT(id) as chart_count FROM transactions WHERE transactions.user_id = " . $_SESSION['auth']['id'] . " AND transactions.status = 'CHART'";
+    $sql = "SELECT COUNT(id) AS chart_count 
+            FROM transactions 
+            WHERE transactions.user_id = " . $_SESSION['auth']['id'] .
+            " AND transactions.status = 'CHART'";
+
     $result = $conn->query($sql);
     $data = $result->fetch_assoc();
     $chart_count = $data['chart_count'];
@@ -28,15 +32,24 @@ if (isset($url)) {
     $menu = '';
 
     if ($url_now == 'admin') {
-        switch ($url_then) {
-            case 'souvenir':
-                require_once 'view/admin/souvenir.php';
-                break;
+        if (isset($_SESSION['auth']['role']) and $_SESSION['auth']['role'] == 1) {
+            switch ($url_then) {
+                case 'souvenir':
+                    require_once 'view/admin/souvenir.php';
+                    break;
+                case 'transaction':
+                    require_once 'view/admin/transaction.php';
+                    break;
+                case 'customer':
+                    require_once 'view/admin/customer.php';
+                    break;
 
-            default:
-                echo "overview";
-                require_once 'view/admin/index.php';
-                break;
+                default:
+                    require_once 'view/admin/index.php';
+                    break;
+            }
+        } else {
+            require_once 'view/admin/login.php';
         }
     } else {
         switch ($url_now) {
