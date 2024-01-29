@@ -82,7 +82,13 @@ $result = $conn->query($sql);
                         admin dengan mengirimkan screenshoot bukti pembayaran.
                     </i>
                 </div>
+
                 <div class="amout-unit">
+                    <div class="aount-unit">
+                        <div class="button"> <a href="<?= $base_url . 'souvenir/payment/' . $data['id'] ?>"
+                                class="btn btn-outline-primary" style="width: 100%;">Bayar
+                                Sekarang</a></div>
+                    </div>
                     <div class="button">
                         <a href="wa.me" class="btn btn-primary">Chat Admin Sekarang</a>
                     </div>

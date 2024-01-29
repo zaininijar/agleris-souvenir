@@ -36,6 +36,7 @@
     }
 
     var current = location.pathname.split("/").slice(-1)[0].replace(/^\/|\/$/g, '');
+    console.log(current);
     $('.nav li a', sidebar).each(function() {
       var $this = $(this);
       addActiveClass($this);

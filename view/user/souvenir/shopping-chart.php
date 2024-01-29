@@ -15,7 +15,6 @@ if (isset($_POST['checkout'])) {
 
     if ($conn->affected_rows > 0) {
         echo "<script>alert('Berhasil Checkout')</script>";
-        echo '<meta http-equiv="refresh" content="2">';
         $_SESSION['is_transaction_buy_now'] = true;
 
     } else {
@@ -68,14 +67,12 @@ if (isset($_POST['checkout'])) {
     <?php if($_SESSION['is_transaction_buy_now']): ?>
     <div class="alert alert-success buy">
         <div>Behasil melakukan pemesanan, silahkan cek detail pembayaran</div> <a
-            href="<?= $base_url . 'souvenir/payment/' . $transaction_id ?>">Bayar
+            href="<?= $base_url . 'souvenir/payment/' . $_POST['id'] ?>">Bayar
             Sekarang</a>
     </div>
     <?php else: ?>
     <div class="alert alert-success buy">
-        <div>GAGAL melakukan pemesanan, silahkan cek detail pembayaran</div> <a
-            href="<?= $base_url . 'souvenir/payment/' . $transaction_id ?>">Bayar
-            Sekarang</a>
+        <div>GAGAL melakukan pemesanan, silahkan cek detail pembayaran</div>
     </div>
     <?php endif; ?>
     <?php unset($_SESSION['is_transaction_buy_now']); ?>

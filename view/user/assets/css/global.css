@@ -525,6 +525,38 @@ footer {
   );
 }
 
+.contact-container {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+}
+
+.contact-card {
+  align-items: center;
+  justify-items: start;
+  font-weight: bold;
+  padding: 10px 20px;
+  border-radius: 8px;
+  gap: 8px;
+  display: flex;
+  font-size: 20px;
+  color: white;
+  cursor: pointer;
+  max-width: 300px;
+  min-width: 200px;
+  background: rgb(113, 47, 218);
+  background: linear-gradient(
+    173deg,
+    rgba(113, 47, 218, 1) 0%,
+    rgba(238, 124, 241, 1) 100%
+  );
+}
+
+.contact-card svg {
+  width: 40px;
+  height: 40px;
+}
+
 .buble-chart .count {
   width: 15px;
   height: 15px;
